@@ -49,7 +49,7 @@ h1 { text-align: center; margin-top: 0; font-weight: 600; letter-spacing: .5px; 
   top: -36px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   color: var(--orange);
   text-shadow: 0 2px 4px rgba(0,0,0,.5);
   animation: pulse 2s infinite;
@@ -78,10 +78,10 @@ h1 { text-align: center; margin-top: 0; font-weight: 600; letter-spacing: .5px; 
 button#spinBtn {
   background: linear-gradient(135deg, var(--orange), #ffb340);
   color: #222;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   font-weight: 600;
   border: none;
-  padding: 1rem 2.5rem;
+  padding: 1.2rem 3rem;
   border-radius: 999px;
   cursor: pointer;
   letter-spacing: .5px;
@@ -95,7 +95,7 @@ button#spinBtn:hover:not([disabled]) {
 button#spinBtn:active:not([disabled]) { transform: translateY(2px); }
 button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-allowed; }
 
-.hint { font-size: 1rem; opacity: .8; margin-top: .75rem; }
+.hint { font-size: 1.2rem; opacity: .8; margin-top: .75rem; }
 
 .modal::backdrop { background: rgba(0,0,0,.8); backdrop-filter: blur(6px); }
 
@@ -155,7 +155,7 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
 }
 
 .premio-texto {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--green-dark);
   margin: 0 0 0.5rem 0;
@@ -165,7 +165,7 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
 }
 
 .premio-descricao {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--green-dark);
   opacity: 0.8;
   font-weight: 500;
@@ -181,10 +181,10 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
 
 .btn-fechar, .btn-girar-novamente {
   border: none;
-  padding: .9rem 2rem;
+  padding: 1.1rem 2.2rem;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: all .3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,.2);
@@ -332,7 +332,7 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
 .modal h2 { 
   margin: 0 0 1rem 0; 
   color: var(--green-dark); 
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
 }
@@ -362,11 +362,11 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
   }
   
   .premio-texto {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
   
   .modal h2 {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
   
   .modal-actions {
@@ -375,9 +375,9 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
   }
   
   .btn-fechar, .btn-girar-novamente {
-    padding: 1rem 1.7rem;
+    padding: 1.2rem 1.8rem;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
 }
 
