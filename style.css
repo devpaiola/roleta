@@ -344,8 +344,25 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
 /* Segment text styling (drawn on canvas, kept here for reference) */
 
 @media (max-width: 640px) {
+  body {
+    font-size: 20px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
   .wheel-wrapper { width: 360px; }
   #center-image { width: 38%; }
+  
+  button#spinBtn {
+    font-size: 1.4rem;
+    padding: 1.1rem 2.5rem;
+  }
+  
+  .hint {
+    font-size: 1.1rem;
+  }
   
   .modal {
     width: 95vw;
@@ -362,11 +379,15 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
   }
   
   .premio-texto {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
+  }
+  
+  .premio-descricao {
+    font-size: 1.2rem;
   }
   
   .modal h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   
   .modal-actions {
@@ -375,23 +396,40 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
   }
   
   .btn-fechar, .btn-girar-novamente {
-    padding: 1.2rem 1.8rem;
+    padding: 1.3rem 2rem;
     width: 100%;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 440px) {
+  body {
+    font-size: 18px;
+  }
+  
+  h1 {
+    font-size: 1.9rem;
+  }
+  
   .wheel-wrapper { width: 300px; }
-  button#spinBtn { width: 100%; }
+  
+  button#spinBtn { 
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+  }
+  
+  .hint {
+    font-size: 1rem;
+  }
   
   .modal-content {
-    padding: 1.5rem 1rem 1rem;
+    padding: 1.8rem 1.2rem 1.2rem;
   }
   
   .modal-icon img {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
   }
   
   .modal-icon {
@@ -401,5 +439,23 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
   .premio-container {
     margin: 1rem 0 1.5rem;
     min-height: 60px;
+  }
+  
+  .premio-texto {
+    font-size: 1.6rem;
+  }
+  
+  .premio-descricao {
+    font-size: 1.1rem;
+  }
+  
+  .modal h2 {
+    font-size: 1.8rem;
+  }
+  
+  .btn-fechar, .btn-girar-novamente {
+    padding: 1.2rem 1.8rem;
+    width: 100%;
+    font-size: 1.3rem;
   }
 }
