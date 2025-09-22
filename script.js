@@ -10,10 +10,25 @@ const prizes = [
 const totalWeight = prizes.reduce((acc, p) => acc + p.weight, 0); // 100
 
 const canvas = document.getElementById('wheel');
-const ctx = canvas.getContext('2d');
 const spinBtn = document.getElementById('spinBtn');
 const modal = document.getElementById('resultadoModal');
 const resultadoTexto = document.getElementById('resultadoTexto');
+
+// Verificações de segurança para elementos essenciais
+if (!canvas) {
+  console.error('Elemento canvas com ID "wheel" não encontrado!');
+}
+if (!spinBtn) {
+  console.error('Elemento botão com ID "spinBtn" não encontrado!');
+}
+if (!modal) {
+  console.error('Elemento modal com ID "resultadoModal" não encontrado!');
+}
+if (!resultadoTexto) {
+  console.error('Elemento texto com ID "resultadoTexto" não encontrado!');
+}
+
+const ctx = canvas ? canvas.getContext('2d') : null;
 
 // Cores alternadas para segmentos (usando paleta)
 const segmentColors = [
@@ -29,6 +44,12 @@ let currentRotation = 0; // em radianos
 let spinning = false;
 
 function drawWheel() {
+  // Verifica se canvas e contexto existem
+  if (!canvas || !ctx) {
+    console.warn('Canvas ou contexto não disponível para desenhar a roleta');
+    return;
+  }
+  
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const radius = canvas.width / 2;
@@ -108,7 +129,12 @@ function drawWheel() {
   ctx.restore();
 }
 
-drawWheel();
+// Inicialização segura da roleta
+if (canvas && ctx) {
+  drawWheel();
+} else {
+  console.error('Não foi possível inicializar a roleta: elementos DOM não encontrados');
+}
 
 function weightedRandom(prizes) {
   const r = Math.random() * totalWeight;
@@ -229,7 +255,10 @@ function createConfetti() {
   }, 5000);
 }
 
-spinBtn.addEventListener('click', spin);
+// Protege o event listener do botão de girar
+if (spinBtn) {
+  spinBtn.addEventListener('click', spin);
+}
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && !spinning && document.activeElement === spinBtn) {
@@ -237,88 +266,115 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-modal.addEventListener('close', () => {
-  spinBtn.focus();
-});
+// Protege o event listener do modal
+if (modal && spinBtn) {
+  modal.addEventListener('close', () => {
+    spinBtn.focus();
+  });
+}
 
-// Event listeners para os novos botões
-document.getElementById('fecharModal').addEventListener('click', () => {
-  modal.close();
-});
+// Event listeners para os botões do modal
+const fecharModalBtn = document.getElementById('fecharModal');
+if (fecharModalBtn && modal) {
+  fecharModalBtn.addEventListener('click', () => {
+    modal.close();
+  });
+}
 
-document.getElementById('girarNovamente').addEventListener('click', () => {
-  modal.close();
-  setTimeout(() => {
-    if (!spinning) {
-      spin();
-    }
-  }, 300);
-});
+// Verifica se o botão "Girar Novamente" existe antes de adicionar o event listener
+const girarNovamenteBtn = document.getElementById('girarNovamente');
+if (girarNovamenteBtn) {
+  girarNovamenteBtn.addEventListener('click', () => {
+    modal.close();
+    setTimeout(() => {
+      if (!spinning) {
+        spin();
+      }
+    }, 300);
+  });
+}
 
 // ==================== FUNCIONALIDADE DE TELA CHEIA ====================
 
 const fullscreenBtn = document.getElementById('fullscreenBtn');
 const fullscreenIcon = document.querySelector('.fullscreen-icon');
 
-function updateFullscreenButton() {
-  if (document.fullscreenElement) {
-    document.body.classList.add('fullscreen-active');
-    fullscreenIcon.textContent = '⌐'; // Ícone discreto para sair da tela cheia
-    fullscreenBtn.title = 'Sair da tela cheia';
-    fullscreenBtn.setAttribute('aria-label', 'Sair da tela cheia');
-  } else {
-    document.body.classList.remove('fullscreen-active');
-    fullscreenIcon.textContent = '⌐'; // Ícone discreto para entrar em tela cheia
-    fullscreenBtn.title = 'Entrar em tela cheia';
-    fullscreenBtn.setAttribute('aria-label', 'Entrar em tela cheia');
-  }
-}
-
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    // Entra em tela cheia
-    document.documentElement.requestFullscreen().catch(err => {
-      console.error(`Erro ao ativar tela cheia: ${err.message}`);
-      // Fallback para navegadores mais antigos
-      if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
-      }
-    });
-  } else {
-    // Sai da tela cheia
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+// Verifica se os elementos existem antes de prosseguir
+if (!fullscreenBtn || !fullscreenIcon) {
+  console.warn('Elementos de tela cheia não encontrados no DOM');
+} else {
+  
+  function updateFullscreenButton() {
+    if (document.fullscreenElement) {
+      document.body.classList.add('fullscreen-active');
+      fullscreenIcon.textContent = '⌐'; // Ícone discreto para sair da tela cheia
+      fullscreenBtn.title = 'Sair da tela cheia';
+      fullscreenBtn.setAttribute('aria-label', 'Sair da tela cheia');
+    } else {
+      document.body.classList.remove('fullscreen-active');
+      fullscreenIcon.textContent = '⌐'; // Ícone discreto para entrar em tela cheia
+      fullscreenBtn.title = 'Entrar em tela cheia';
+      fullscreenBtn.setAttribute('aria-label', 'Entrar em tela cheia');
     }
   }
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      // Entra em tela cheia
+      document.documentElement.requestFullscreen().catch(err => {
+        console.error(`Erro ao ativar tela cheia: ${err.message}`);
+        // Fallback para navegadores mais antigos
+        if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      });
+    } else {
+      // Sai da tela cheia
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  }
+
+  // Event listeners
+  fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+  // Detecta mudanças no estado da tela cheia (incluindo F11)
+  document.addEventListener('fullscreenchange', updateFullscreenButton);
+  document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+  document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+  document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+  // Inicializa o estado do botão
+  updateFullscreenButton();
 }
 
-// Event listeners
-fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-// Detecta mudanças no estado da tela cheia (incluindo F11)
-document.addEventListener('fullscreenchange', updateFullscreenButton);
-document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
-document.addEventListener('mozfullscreenchange', updateFullscreenButton);
-document.addEventListener('MSFullscreenChange', updateFullscreenButton);
-
-// Atalho de teclado (opcional)
+// Atalho de teclado (funciona independente do botão)
 document.addEventListener('keydown', (e) => {
   // Ctrl + F para alternar tela cheia
   if (e.ctrlKey && e.key === 'f') {
     e.preventDefault();
-    toggleFullscreen();
+    if (fullscreenBtn && typeof toggleFullscreen === 'function') {
+      toggleFullscreen();
+    } else {
+      // Fallback se o botão não existir
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.error(`Erro ao ativar tela cheia: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
   }
 });
-
-// Inicializa o estado do botão
-updateFullscreenButton();
