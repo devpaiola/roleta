@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roleta de Prêmios</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <h1>Roleta de Prêmios</h1>
+    <div class="wheel-wrapper" aria-live="polite">
+      <div class="pointer" aria-hidden="true">▼</div>
+      <canvas id="wheel" width="500" height="500" role="img" aria-label="Roleta de prêmios"></canvas>
+      <img id="center-image" src="logo.png" alt="Logo central" />
+    </div>
+    <button id="spinBtn" type="button" aria-haspopup="dialog" aria-controls="resultadoModal">Girar</button>
+    <p class="hint">Clique em Girar para tentar a sorte!</p>
+  </main>
+
+  <dialog id="resultadoModal" class="modal" aria-labelledby="resultadoTitulo">
+    <h2 id="resultadoTitulo">Resultado</h2>
+    <p id="resultadoTexto"></p>
+    <form method="dialog">
+      <button id="fecharModal">Fechar</button>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
