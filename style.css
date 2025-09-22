@@ -127,6 +127,10 @@ img.center-image {
   cursor: pointer;
   transition: all 0.3s ease;
   user-select: none;
+  /* Melhor área de toque para mobile */
+  min-width: 50px;
+  min-height: 50px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img.center-image:hover {
@@ -395,6 +399,11 @@ img.center-image:focus {
 @media (max-width: 640px) {
   body {
     font-size: 20px;
+    padding: 1rem;
+  }
+  
+  .app {
+    max-width: 100%;
   }
   
   h1 {
@@ -408,8 +417,23 @@ img.center-image:focus {
     right: -5px;
   }
   
-  .wheel-wrapper { width: 360px; }
-  .center-image { width: 38%; }
+  .wheel-wrapper { 
+    width: 360px; 
+    margin: 0 auto 1rem;
+  }
+  
+  img.center-image { 
+    width: 38%; 
+  }
+  
+  /* Melhor experiência touch em mobile */
+  img.center-image:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  
+  img.center-image:active {
+    transform: translate(-50%, -50%) scale(0.98);
+  }
   
   .hint {
     font-size: 1.1rem;
@@ -456,10 +480,16 @@ img.center-image:focus {
 @media (max-width: 440px) {
   body {
     font-size: 18px;
+    padding: 0.5rem;
+  }
+  
+  .app {
+    max-width: 100%;
   }
   
   h1 {
     font-size: 1.9rem;
+    margin: 0.5rem 0;
   }
   
   .fullscreen-btn {
@@ -469,7 +499,24 @@ img.center-image:focus {
     right: -10px;
   }
   
-  .wheel-wrapper { width: 300px; }
+  .wheel-wrapper { 
+    width: 300px;
+    margin: 0 auto 1rem;
+  }
+  
+  img.center-image { 
+    width: 40%; 
+    /* Aumenta ligeiramente a área de toque em telas pequenas */
+  }
+  
+  /* Otimizado para touch em telas muito pequenas */
+  img.center-image:hover {
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+  
+  img.center-image:active {
+    transform: translate(-50%, -50%) scale(0.97);
+  }
   
   .hint {
     font-size: 1rem;
@@ -509,5 +556,28 @@ img.center-image:focus {
     padding: 1.2rem 1.8rem;
     width: 100%;
     font-size: 1.3rem;
+  }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 360px) {
+  .wheel-wrapper { 
+    width: 280px;
+  }
+  
+  img.center-image { 
+    width: 42%; 
+    /* Área de toque ainda maior em telas muito pequenas */
+    min-width: 60px;
+    min-height: 60px;
+  }
+  
+  h1 {
+    font-size: 1.7rem;
+  }
+  
+  .hint {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
   }
 }
