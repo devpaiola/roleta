@@ -174,7 +174,7 @@ img.center-image:focus {
 
 .qr-code {
   text-align: center;
-  padding: 1rem;
+  padding: 1.2rem;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
@@ -192,14 +192,14 @@ img.center-image:focus {
   margin: 0 auto;
   border-radius: 8px;
   background: white;
-  padding: 8px;
-  width: 120px;
-  height: 120px;
+  padding: 10px;
+  width: 200px;
+  height: 200px;
 }
 
 .qr-text {
-  margin: 0.5rem 0 0 0;
-  font-size: 0.9rem;
+  margin: 0.6rem 0 0 0;
+  font-size: 1rem;
   color: var(--gray);
   opacity: 0.9;
   font-family: 'Montserrat', sans-serif;
@@ -516,12 +516,12 @@ img.center-image:focus {
   }
   
   .qr-code img {
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
   }
   
   .qr-text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -589,12 +589,12 @@ img.center-image:focus {
   }
   
   .qr-code img {
-    width: 90px;
-    height: 90px;
+    width: 160px;
+    height: 160px;
   }
   
   .qr-text {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -685,16 +685,16 @@ img.center-image:focus {
   }
   
   .qr-code {
-    padding: 0.8rem;
+    padding: 1rem;
   }
   
   .qr-code img {
-    width: 110px;
-    height: 110px;
+    width: 150px;
+    height: 150px;
   }
   
   .qr-text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -785,16 +785,16 @@ img.center-image:focus {
   }
   
   .qr-code {
-    padding: 0.6rem;
+    padding: 0.8rem;
   }
   
   .qr-code img {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
   }
   
   .qr-text {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -826,15 +826,15 @@ img.center-image:focus {
   }
   
   .qr-code {
-    padding: 0.5rem;
+    padding: 0.6rem;
   }
   
   .qr-code img {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
   }
   
   .qr-text {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 }
