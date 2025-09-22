@@ -17,12 +17,24 @@
         <span class="fullscreen-icon">⌐</span>
       </button>
     </div>
-    <div class="wheel-wrapper" aria-live="polite">
-      <div class="pointer" aria-hidden="true">▼</div>
-      <canvas id="wheel" width="500" height="500" role="img" aria-label="Roleta de prêmios"></canvas>
-      <img id="spinBtn" class="center-image" src="logo.png" alt="Logo central" />
+    
+    <div class="main-content">
+      <div class="wheel-section">
+        <div class="wheel-wrapper" aria-live="polite">
+          <div class="pointer" aria-hidden="true">▼</div>
+          <canvas id="wheel" width="500" height="500" role="img" aria-label="Roleta de prêmios"></canvas>
+          <img id="spinBtn" class="center-image" src="logo.png" alt="Logo central" />
+        </div>
+        <p class="hint">Clique na logo central para tentar a sorte!</p>
+      </div>
+      
+      <!-- QR Code -->
+      <div class="qr-code-container">
+        <div class="qr-code">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/devpaiola/roleta" alt="QR Code para acessar a roleta" />
+        </div>
+      </div>
     </div>
-    <p class="hint">Clique na logo central para tentar a sorte!</p>
   </main>
 
   <dialog id="resultadoModal" class="modal" aria-labelledby="resultadoTitulo">

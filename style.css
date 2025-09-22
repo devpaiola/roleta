@@ -79,6 +79,21 @@ h1 { text-align: center; margin-top: 0; font-weight: 600; letter-spacing: .5px; 
 
 .app h1 { padding: 1rem 0; }
 
+/* Layout principal com flexbox para desktop */
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.wheel-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .wheel-wrapper {
   position: relative;
   width: 500px;
@@ -149,6 +164,47 @@ img.center-image:focus {
 }
 
 .hint { font-size: 1.2rem; opacity: .8; margin-top: .75rem; }
+
+/* QR Code Styles */
+.qr-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-code {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.qr-code:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.qr-code img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: white;
+  padding: 8px;
+  width: 120px;
+  height: 120px;
+}
+
+.qr-text {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.9rem;
+  color: var(--gray);
+  opacity: 0.9;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
 
 .modal::backdrop { background: rgba(0,0,0,.8); backdrop-filter: blur(6px); }
 
@@ -453,6 +509,20 @@ img.center-image:focus {
     font-size: 1.5rem;
     padding: 1.3rem 2.5rem;
   }
+  
+  /* QR Code para tablets grandes */
+  .main-content {
+    gap: 2rem;
+  }
+  
+  .qr-code img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .qr-text {
+    font-size: 0.8rem;
+  }
 }
 
 /* Tablets pequenos e celulares grandes (641px - 767px) */
@@ -511,6 +581,20 @@ img.center-image:focus {
   .btn-fechar, .btn-girar-novamente {
     font-size: 1.4rem;
     padding: 1.2rem 2.2rem;
+  }
+  
+  /* QR Code para tablets pequenos */
+  .main-content {
+    gap: 1.5rem;
+  }
+  
+  .qr-code img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .qr-text {
+    font-size: 0.75rem;
   }
 }
 
@@ -592,6 +676,25 @@ img.center-image:focus {
     padding: 1.3rem 2rem;
     width: 100%;
     font-size: 1.4rem;
+  }
+  
+  /* Layout móvel - QR code embaixo */
+  .main-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .qr-code {
+    padding: 0.8rem;
+  }
+  
+  .qr-code img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .qr-text {
+    font-size: 0.8rem;
   }
 }
 
@@ -675,6 +778,24 @@ img.center-image:focus {
     width: 100%;
     font-size: 1.3rem;
   }
+  
+  /* QR Code para telas pequenas */
+  .main-content {
+    gap: 1rem;
+  }
+  
+  .qr-code {
+    padding: 0.6rem;
+  }
+  
+  .qr-code img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .qr-text {
+    font-size: 0.7rem;
+  }
 }
 
 /* Telas muito pequenas */
@@ -697,5 +818,23 @@ img.center-image:focus {
   .hint {
     font-size: 0.9rem;
     margin-top: 0.5rem;
+  }
+  
+  /* QR Code para telas muito pequenas */
+  .main-content {
+    gap: 0.8rem;
+  }
+  
+  .qr-code {
+    padding: 0.5rem;
+  }
+  
+  .qr-code img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .qr-text {
+    font-size: 0.65rem;
   }
 }
