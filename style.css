@@ -396,6 +396,124 @@ img.center-image:focus {
 
 /* Segment text styling (drawn on canvas, kept here for reference) */
 
+/* Tablets grandes (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .wheel-wrapper { 
+    width: 600px; 
+    max-width: 85vw;
+    margin: 0 auto 1.5rem;
+  }
+  
+  img.center-image { 
+    width: 30%; 
+  }
+  
+  h1 {
+    font-size: 3.2rem;
+  }
+  
+  body {
+    font-size: 24px;
+    padding: 1.5rem;
+  }
+  
+  .hint {
+    font-size: 1.4rem;
+  }
+  
+  .fullscreen-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
+  }
+  
+  /* Ajustes do modal para tablets grandes */
+  .modal {
+    width: 85vw;
+    max-width: 600px;
+  }
+  
+  .modal-content {
+    padding: 3rem 2.5rem 2.5rem;
+  }
+  
+  .premio-texto {
+    font-size: 2.4rem;
+  }
+  
+  .premio-descricao {
+    font-size: 1.5rem;
+  }
+  
+  .modal h2 {
+    font-size: 2.8rem;
+  }
+  
+  .btn-fechar, .btn-girar-novamente {
+    font-size: 1.5rem;
+    padding: 1.3rem 2.5rem;
+  }
+}
+
+/* Tablets pequenos e celulares grandes (641px - 767px) */
+@media (min-width: 641px) and (max-width: 767px) {
+  .wheel-wrapper { 
+    width: 480px; 
+    max-width: 88vw;
+    margin: 0 auto 1.25rem;
+  }
+  
+  img.center-image { 
+    width: 32%; 
+  }
+  
+  h1 {
+    font-size: 2.6rem;
+  }
+  
+  body {
+    font-size: 22px;
+    padding: 1.25rem;
+  }
+  
+  .hint {
+    font-size: 1.3rem;
+  }
+  
+  .fullscreen-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+  }
+  
+  /* Ajustes do modal para tablets pequenos */
+  .modal {
+    width: 90vw;
+    max-width: 500px;
+  }
+  
+  .modal-content {
+    padding: 2.5rem 2rem 2rem;
+  }
+  
+  .premio-texto {
+    font-size: 2.1rem;
+  }
+  
+  .premio-descricao {
+    font-size: 1.4rem;
+  }
+  
+  .modal h2 {
+    font-size: 2.5rem;
+  }
+  
+  .btn-fechar, .btn-girar-novamente {
+    font-size: 1.4rem;
+    padding: 1.2rem 2.2rem;
+  }
+}
+
 @media (max-width: 640px) {
   body {
     font-size: 20px;
