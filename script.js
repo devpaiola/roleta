@@ -1,11 +1,11 @@
 const prizes = [
   // Use '\n' para forçar quebra de linha no texto; espaços extras serão removidos.
-  { label: 'Tente outra vez', weight: 25, type: 'mensagem' },
-  { label: 'Poxa que pena', weight: 25, type: 'mensagem' },
+  { label: 'Tente outra vez', weight: 16, type: 'mensagem' },
+  { label: 'Poxa que pena', weight: 20, type: 'mensagem' },
   { label: 'Não foi dessa vez', weight: 20, type: 'mensagem' },
   { label: 'Protetor Webcam', weight: 17, type: 'fisico' },
-  { label: 'Copo', weight: 6, type: 'fisico' },
-  { label: 'Espelho', weight: 7, type: 'fisico' },
+  { label: 'Copo', weight: 10, type: 'fisico' },
+  { label: 'Espelho', weight: 17, type: 'fisico' },
 ];
 const totalWeight = prizes.reduce((acc, p) => acc + p.weight, 0); // 100
 
