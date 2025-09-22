@@ -254,3 +254,71 @@ document.getElementById('girarNovamente').addEventListener('click', () => {
     }
   }, 300);
 });
+
+// ==================== FUNCIONALIDADE DE TELA CHEIA ====================
+
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+const fullscreenIcon = document.querySelector('.fullscreen-icon');
+
+function updateFullscreenButton() {
+  if (document.fullscreenElement) {
+    document.body.classList.add('fullscreen-active');
+    fullscreenIcon.textContent = '⌐'; // Ícone discreto para sair da tela cheia
+    fullscreenBtn.title = 'Sair da tela cheia';
+    fullscreenBtn.setAttribute('aria-label', 'Sair da tela cheia');
+  } else {
+    document.body.classList.remove('fullscreen-active');
+    fullscreenIcon.textContent = '⌐'; // Ícone discreto para entrar em tela cheia
+    fullscreenBtn.title = 'Entrar em tela cheia';
+    fullscreenBtn.setAttribute('aria-label', 'Entrar em tela cheia');
+  }
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    // Entra em tela cheia
+    document.documentElement.requestFullscreen().catch(err => {
+      console.error(`Erro ao ativar tela cheia: ${err.message}`);
+      // Fallback para navegadores mais antigos
+      if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+      }
+    });
+  } else {
+    // Sai da tela cheia
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+}
+
+// Event listeners
+fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+// Detecta mudanças no estado da tela cheia (incluindo F11)
+document.addEventListener('fullscreenchange', updateFullscreenButton);
+document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+// Atalho de teclado (opcional)
+document.addEventListener('keydown', (e) => {
+  // Ctrl + F para alternar tela cheia
+  if (e.ctrlKey && e.key === 'f') {
+    e.preventDefault();
+    toggleFullscreen();
+  }
+});
+
+// Inicializa o estado do botão
+updateFullscreenButton();

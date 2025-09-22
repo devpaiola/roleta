@@ -11,7 +11,12 @@
 </head>
 <body>
   <main class="app">
-    <h1>Roleta de Prêmios</h1>
+    <div class="header-controls">
+      <h1>Roleta de Prêmios</h1>
+      <button id="fullscreenBtn" class="fullscreen-btn" title="Alternar tela cheia" aria-label="Alternar tela cheia">
+        <span class="fullscreen-icon">⌐</span>
+      </button>
+    </div>
     <div class="wheel-wrapper" aria-live="polite">
       <div class="pointer" aria-hidden="true">▼</div>
       <canvas id="wheel" width="500" height="500" role="img" aria-label="Roleta de prêmios"></canvas>
