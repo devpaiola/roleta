@@ -255,16 +255,25 @@ function createConfetti() {
   }, 5000);
 }
 
-// Protege o event listener do botão de girar
+// Protege o event listener do botão de girar (agora é uma imagem)
 if (spinBtn) {
+  // Configura a imagem para funcionar como botão
+  spinBtn.setAttribute('role', 'button');
+  spinBtn.setAttribute('tabindex', '0');
+  spinBtn.setAttribute('aria-label', 'Clique para girar a roleta');
+  spinBtn.style.cursor = 'pointer';
+  
+  // Event listener para clique
   spinBtn.addEventListener('click', spin);
+  
+  // Event listener para teclado (Enter e Space)
+  spinBtn.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && !spinning) {
+      e.preventDefault();
+      spin();
+    }
+  });
 }
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !spinning && document.activeElement === spinBtn) {
-    spin();
-  }
-});
 
 // Protege o event listener do modal
 if (modal && spinBtn) {
