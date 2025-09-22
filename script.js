@@ -1,6 +1,6 @@
 const prizes = [
   // Use '\n' para forçar quebra de linha no texto; espaços extras serão removidos.
-  { label: 'Indique mais e \n tente outra vez', weight: 25, type: 'mensagem' },
+  { label: 'Tente outra vez', weight: 25, type: 'mensagem' },
   { label: 'Poxa que pena', weight: 25, type: 'mensagem' },
   { label: 'Não foi dessa vez', weight: 20, type: 'mensagem' },
   { label: 'Protetor Webcam', weight: 17, type: 'fisico' },
@@ -170,13 +170,63 @@ function spin() {
 }
 
 function showResult(prize) {
-  const prefix = prize.type === 'fisico' ? 'Parabéns! Você ganhou: ' : '';
-  resultadoTexto.textContent = prefix + prize.label;
+  const modal = document.getElementById('resultadoModal');
+  const resultadoTexto = document.getElementById('resultadoTexto');
+  const premioDescricao = document.getElementById('premioDescricao');
+  const resultadoIcone = document.getElementById('resultadoIcone');
+  const resultadoTitulo = document.getElementById('resultadoTitulo');
+  
+  // Remove classes anteriores
+  modal.classList.remove('premio-bom', 'premio-ruim', 'shake');
+  
+  // Determina se é prêmio bom ou ruim
+  const isPremioFisico = prize.type === 'fisico';
+  
+  if (isPremioFisico) {
+    // Prêmio físico - BOM!
+    modal.classList.add('premio-bom');
+    resultadoTitulo.textContent = 'PARABÉNS!';
+    resultadoTexto.innerHTML = `Você ganhou:<br><strong>${prize.label}</strong>`;
+    premioDescricao.innerHTML = '🎁 Entre em contato para retirar seu prêmio!';
+    
+    // Ativa confetes
+    setTimeout(() => createConfetti(), 300);
+    
+  } else {
+    // Prêmio de mensagem - RUIM
+    modal.classList.add('premio-ruim');
+    resultadoTitulo.textContent = 'QUE PENA!';
+    resultadoTexto.innerHTML = prize.label.replace(/\n/g, '<br>');
+    premioDescricao.innerHTML = '💪 Não desista! Tente novamente!';
+  }
+
   if (typeof modal.showModal === 'function') {
     modal.showModal();
   } else {
-    alert(resultadoTexto.textContent);
+    const alertText = isPremioFisico 
+      ? `PARABÉNS! Você ganhou: ${prize.label}` 
+      : prize.label.replace(/\n/g, ' ');
+    alert(alertText);
   }
+}
+
+function createConfetti() {
+  const confetesContainer = document.getElementById('confetes');
+  confetesContainer.innerHTML = ''; // Limpa confetes anteriores
+  
+  for (let i = 0; i < 50; i++) {
+    const confete = document.createElement('div');
+    confete.className = 'confete';
+    confete.style.left = Math.random() * 100 + '%';
+    confete.style.animationDelay = Math.random() * 2 + 's';
+    confete.style.animationDuration = (Math.random() * 2 + 3) + 's';
+    confetesContainer.appendChild(confete);
+  }
+  
+  // Remove confetes após a animação
+  setTimeout(() => {
+    confetesContainer.innerHTML = '';
+  }, 5000);
 }
 
 spinBtn.addEventListener('click', spin);
@@ -189,4 +239,18 @@ document.addEventListener('keydown', (e) => {
 
 modal.addEventListener('close', () => {
   spinBtn.focus();
+});
+
+// Event listeners para os novos botões
+document.getElementById('fecharModal').addEventListener('click', () => {
+  modal.close();
+});
+
+document.getElementById('girarNovamente').addEventListener('click', () => {
+  modal.close();
+  setTimeout(() => {
+    if (!spinning) {
+      spin();
+    }
+  }, 300);
 });

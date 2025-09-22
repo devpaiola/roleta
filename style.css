@@ -95,30 +95,304 @@ button#spinBtn[disabled] { filter: grayscale(.6) brightness(.7); cursor: not-all
 
 .hint { font-size: .9rem; opacity: .8; margin-top: .75rem; }
 
-.modal::backdrop { background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+.modal::backdrop { background: rgba(0,0,0,.8); backdrop-filter: blur(6px); }
+
 .modal {
   border: none;
-  border-radius: 16px;
-  padding: 1.75rem 2rem 2rem;
-  background: #04d38a;
-  color: var(--text-dark);
-  width: min(90vw, 400px);
-  box-shadow: var(--shadow);
-  animation: pop .45s cubic-bezier(.17,.67,.32,1.4);
+  border-radius: 24px;
+  padding: 0;
+  background: transparent;
+  width: min(95vw, 500px);
+  max-height: 90vh;
+  box-shadow: 0 20px 60px -10px rgba(0,0,0,.6);
+  animation: modalEnter .6s cubic-bezier(.17,.67,.32,1.4);
+  overflow: hidden;
 }
-@keyframes pop { 0% { transform: scale(.5) translateY(40px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
-.modal h2 { margin-top: 0; color: var(--green-dark); }
-.modal p { font-size: 1.1rem; font-weight: 500; }
-.modal button { background: var(--green-light); color: var(--green-dark); border: none; padding: .7rem 1.4rem; border-radius: 8px; font-weight: 600; cursor: pointer; }
-.modal button:hover { filter: brightness(1.1); }
+
+.modal-content {
+  background: linear-gradient(145deg, #04d38a, #03b373);
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.modal-icon {
+  margin-bottom: 1rem;
+  animation: iconBounce 1s ease-out;
+}
+
+.modal-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.premio-container {
+  margin: 1.5rem 0 2rem;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.premio-texto {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  text-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.premio-descricao {
+  font-size: 1rem;
+  color: var(--green-dark);
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-fechar, .btn-girar-novamente {
+  border: none;
+  padding: .8rem 1.8rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all .3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+
+.btn-fechar {
+  background: rgba(255,255,255,.9);
+  color: var(--green-dark);
+}
+
+.btn-fechar:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+.btn-girar-novamente {
+  background: linear-gradient(135deg, var(--orange), #ffb340);
+  color: #222;
+}
+
+.btn-girar-novamente:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,151,0,.4);
+}
+
+/* Estados diferentes para tipos de prêmio */
+.modal.premio-bom .modal-content {
+  background: linear-gradient(145deg, #04d38a, #03b373);
+}
+
+.modal.premio-ruim .modal-content {
+  background: linear-gradient(145deg, #ff6b6b, #e55656);
+}
+
+.modal.premio-ruim .premio-texto {
+  color: white;
+}
+
+.modal.premio-ruim .premio-descricao {
+  color: rgba(255,255,255,.9);
+}
+
+/* Animações */
+@keyframes modalEnter {
+  0% { 
+    transform: scale(.3) translateY(100px); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.05) translateY(-20px); 
+    opacity: .8; 
+  }
+  100% { 
+    transform: scale(1) translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes iconBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+/* Confetes */
+.confetes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confete {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffb340;
+  animation: confeteFall 3s ease-out forwards;
+}
+
+.confete:nth-child(2n) { background: #04d38a; }
+.confete:nth-child(3n) { background: #ff9700; }
+.confete:nth-child(4n) { background: #03b373; }
+
+@keyframes confeteFall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Animação de pulso para prêmios físicos */
+@keyframes premio-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.modal.premio-bom .premio-texto {
+  animation: premio-pulse 2s ease-in-out infinite;
+}
+
+/* Hover effects melhorados */
+.btn-fechar:active {
+  transform: translateY(0);
+}
+
+.btn-girar-novamente:active {
+  transform: translateY(0);
+}
+
+/* Efeito de brilho para prêmios bons */
+.modal.premio-bom::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shine 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
+
+.modal-content {
+  position: relative;
+  z-index: 2;
+}
+
+.modal h2 { 
+  margin: 0 0 1rem 0; 
+  color: var(--green-dark); 
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.modal.premio-ruim h2 {
+  color: white;
+}
 
 /* Segment text styling (drawn on canvas, kept here for reference) */
 
 @media (max-width: 640px) {
   .wheel-wrapper { width: 360px; }
   #center-image { width: 38%; }
+  
+  .modal {
+    width: 95vw;
+    max-width: none;
+  }
+  
+  .modal-content {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .modal-icon img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .premio-texto {
+    font-size: 1.2rem;
+  }
+  
+  .modal h2 {
+    font-size: 1.5rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .btn-fechar, .btn-girar-novamente {
+    padding: .9rem 1.5rem;
+    width: 100%;
+  }
 }
+
 @media (max-width: 440px) {
   .wheel-wrapper { width: 300px; }
   button#spinBtn { width: 100%; }
+  
+  .modal-content {
+    padding: 1.5rem 1rem 1rem;
+  }
+  
+  .modal-icon img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .modal-icon {
+    margin-bottom: 0.8rem;
+  }
+  
+  .premio-container {
+    margin: 1rem 0 1.5rem;
+    min-height: 60px;
+  }
 }

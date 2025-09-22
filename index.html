@@ -19,11 +19,21 @@
   </main>
 
   <dialog id="resultadoModal" class="modal" aria-labelledby="resultadoTitulo">
-    <h2 id="resultadoTitulo">Resultado</h2>
-    <p id="resultadoTexto"></p>
-    <form method="dialog">
-      <button id="fecharModal">Fechar</button>
-    </form>
+    <div class="modal-content">
+      <div class="modal-icon">
+        <img id="resultadoIcone" src="genia.png" alt="Gênia" />
+      </div>
+      <h2 id="resultadoTitulo">Resultado</h2>
+      <div class="premio-container">
+        <p id="resultadoTexto" class="premio-texto"></p>
+        <div id="premioDescricao" class="premio-descricao"></div>
+      </div>
+      <div class="modal-actions">
+        <button id="fecharModal" class="btn-fechar">Fechar</button>
+        <button id="girarNovamente" class="btn-girar-novamente">Girar Novamente</button>
+      </div>
+    </div>
+    <div class="confetes" id="confetes"></div>
   </dialog>
 
   <script src="script.js"></script>
